@@ -1,0 +1,75 @@
+# azure-pipelines.yml
+# CI para proyecto Go + Docker
+
+name: $(Date:yyyyMMdd).$(Rev:r)
+
+trigger:
+  - main
+
+pr:
+  - main
+
+# ==== Elegí UNO de estos pools ====
+pool:
+  vmImage: 'ubuntu-latest'     # Microsoft-hosted
+
+# pool:
+#   name: LocalPool            # <-- tu self-hosted, si querés usarlo
+
+variables:
+  goVersion: '1.21.x'
+  artifactName: 'go-build'
+  imageName: 'proyecto-strumia-demarcos'   # nombre local de la imagen
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+
+  # Instalar versión de Go
+  - task: GoTool@0
+    displayName: 'Instalar Go $(goVersion)'
+    inputs:
+      version: '$(goVersion)'
+
+  # Compilar
+  - script: |
+      go version
+      go mod download
+      mkdir -p out
+      go build -o out/app ./...
+    displayName: 'Compilar proyecto Go'
+
+  # Tests (si aún no hay tests, no falla el pipeline)
+  - script: |
+      echo "Ejecutando tests..."
+      go test ./...
+    displayName: 'Tests'
+    continueOnError: true
+
+  # Construcción de la imagen Docker (local, sin push a registro)
+  # Si más adelante querés publicar a ACR/DockerHub, cambiamos a Docker@2 con service connection.
+  - script: |
+      echo "Construyendo imagen Docker..."
+      docker --version
+      docker build -t $(imageName):$(Build.BuildId) -f Dockerfile .
+      echo "Imagen construida: $(imageName):$(Build.BuildId)"
+    displayName: 'Docker build'
+
+  # Opcional: construir todo con docker-compose (si lo usás)
+  - script: |
+      if [ -f docker-compose.yml ]; then
+        echo "docker-compose.yml detectado. Ejecutando build de servicios..."
+        docker compose -f docker-compose.yml build
+      else
+        echo "No hay docker-compose.yml; se omite este paso."
+      fi
+    displayName: 'Docker compose build (opcional)'
+    continueOnError: true
+
+  # Publicar el binario compilado como artefacto de build
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publicar artefacto'
+    inputs:
+      PathtoPublish: 'out'
+      ArtifactName: '$(artifactName)'
+      publishLocation: 'Container'

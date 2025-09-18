@@ -1,0 +1,116 @@
+# CI Front (Vite) + Back (Go) en Self-Hosted
+name: $(Date:yyyyMMdd).$(Rev:r)
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr: none
+
+stages:
+- stage: CI
+  displayName: CI (Front + Back)
+  jobs:
+
+  # ========== FRONT (Vite) ==========
+  - job: build_front
+    displayName: Build Front (Vite)
+    pool:
+      name: SelfHosted          # <--- tu pool
+    steps:
+    - checkout: self
+
+    - task: NodeTool@0
+      displayName: Use Node 18
+      inputs:
+        versionSpec: '18.x'
+
+    - task: Cache@2
+      displayName: Cache npm (front)
+      inputs:
+        key: 'npm | "$(Agent.OS)" | $(Build.SourcesDirectory)\frontend\package-lock.json'
+        path: '$(Build.SourcesDirectory)\frontend\node_modules'
+        restoreKeys: |
+          npm | "$(Agent.OS)"
+
+    - powershell: |
+        $front = "$(Build.SourcesDirectory)\frontend"
+        Write-Host "Iniciando build del frontend en: $front"
+        Set-Location $front
+
+        if (-not (Test-Path ".\package.json")) { throw "No se encontró package.json en $front" }
+
+        npm ci
+        npm run build
+
+        if (-not (Test-Path ".\dist")) { throw "El build no generó frontend\dist" }
+        Write-Host "Contenido de dist:"
+        Get-ChildItem .\dist -Recurse | Select-Object FullName, Length
+      displayName: npm ci & build (front)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publicar artefacto del front
+      inputs:
+        targetPath: '$(Build.SourcesDirectory)\frontend\dist'
+        artifact: 'front'
+
+  # ========== BACK (Go) ==========
+  - job: build_back_go
+    displayName: Build Back (Go)
+    pool:
+      name: SelfHosted
+    steps:
+    - checkout: self
+
+    # Detectar carpeta del back:
+    #   1) Usa /backend si existe y tiene go.mod
+    #   2) Si no, busca el primer go.mod fuera de /frontend
+    - powershell: |
+        $repo = "$(Build.SourcesDirectory)"
+        $dir = Join-Path $repo "backend"
+        if (-not (Test-Path (Join-Path $dir "go.mod"))) {
+          $goMod = Get-ChildItem -Path $repo -Recurse -Filter go.mod |
+                   Where-Object { $_.DirectoryName -notmatch '\\frontend(\\|$)' } |
+                   Select-Object -First 1
+          if (-not $goMod) { throw "No se encontró go.mod (fuera de /frontend). Revisá la estructura." }
+          $dir = $goMod.DirectoryName
+        }
+        Write-Host "Backend dir detectado: $dir"
+        Write-Host "##vso[task.setvariable variable=BACK_DIR]$dir"
+      displayName: Detectar carpeta del backend
+
+    # Build del back con caches de Go forzadas a rutas sanas (evita el error pip3.exe)
+    - powershell: |
+        # Caches de Go en carpeta temporal del agente
+        $env:GOPATH     = Join-Path $env:AGENT_TEMPDIRECTORY 'gopath'
+        $env:GOMODCACHE = Join-Path $env:GOPATH 'pkg\mod'
+        $env:GOCACHE    = Join-Path $env:AGENT_TEMPDIRECTORY 'gocache'
+        New-Item -ItemType Directory -Force -Path $env:GOMODCACHE | Out-Null
+        New-Item -ItemType Directory -Force -Path $env:GOCACHE    | Out-Null
+
+        Write-Host "GOPATH=$env:GOPATH"
+        Write-Host "GOMODCACHE=$env:GOMODCACHE"
+        Write-Host "GOCACHE=$env:GOCACHE"
+
+        go version
+        Set-Location -Path "$(BACK_DIR)"
+        go env
+
+        if (-not (Test-Path ".\out")) { New-Item -ItemType Directory -Path ".\out" | Out-Null }
+        go mod download
+        go build -o .\out\server .
+
+        # Detectar binario en Windows (server.exe) o *nix (server)
+        $bin = Join-Path (Resolve-Path .\out) 'server.exe'
+        if (-not (Test-Path $bin)) { $bin = Join-Path (Resolve-Path .\out) 'server' }
+        if (-not (Test-Path $bin)) { throw "No se generó el binario del backend en $(BACK_DIR)\out" }
+
+        Write-Host "Binario generado: $bin"
+      displayName: Build (go)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publicar artefacto del back
+      inputs:
+        targetPath: '$(BACK_DIR)\out'
+        artifact: 'back'
