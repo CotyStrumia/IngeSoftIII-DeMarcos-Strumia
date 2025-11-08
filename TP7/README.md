@@ -1,107 +1,87 @@
 # VentasTP7DeMarcos-strumia
 
-Auth Controller:
+README – TP7: Testing & CI/CD
+# Proyecto
 
-Login exitoso
-JSON malformado
-Usuario no encontrado
-Clave incorrecta
-Usuario Controller:
+Sistema de Ventas – Ingeniería de Software III
 
-Crear usuario exitoso
-JSON malformado
-Rol inválido
-Usuario existente
-Error de base de datos
-Producto Controller:
+Aplicación fullstack compuesta por:
 
-JSON malformado
-Crear producto exitoso
-Compra Controller:
+Backend: Go (Gin + GORM)
 
-JSON malformado
-Producto no encontrado
-Error al guardar
-Error al crear compra
-Venta Controller:
+Frontend: React (Vite + TypeScript)
 
-JSON malformado
-Producto no encontrado
-Stock insuficiente
-Error al guardar producto
-Error al crear venta
+Pipeline CI/CD: GitLab CI
+
+Testing: Unitarios, integración, E2E (Cypress), y análisis estático con SonarCloud
+
+# Estructura del pipeline
+
+El pipeline se compone de 6 etapas en orden secuencial:
+
+Etapa	Descripción	Herramienta
+- build_backend	Compila el backend de Go y valida dependencias	Go 1.24
+- build_frontend	Instala dependencias y construye el bundle de React	Node 20
+- test_backend	Ejecuta tests de Go con go test y genera cobertura XML	go test + gocover-cobertura
+- test_frontend	Ejecuta tests de Jest con reporte LCOV	Jest + React Testing Library
+- sonarcloud_analysis	Análisis estático del código y métricas de calidad	SonarCloud
+- e2e_tests	Pruebas de flujo completo sobre el frontend	Cypress
+- Testing
+- Backend (Go)
+
+Se utilizan tests unitarios en el paquete controllers
+
+Cobertura actual: ≈ 94%
+
+Comando local:
+
+go test ./controllers -v -coverprofile=coverage.out
+go tool cover -html=coverage.out
+
+Ver coverage.html o capturas en carpeta de evidencias
 
 
-RESUMEN DE PRUEBAS DEL FRONTEND
-🎯 Estadísticas de Cobertura:
-Cobertura total: 76.92%
-Archivos cubiertos: 2 archivos principales
-Tests ejecutados: 5 tests pasaron ✅
-📁 Archivos de Test:
-tests/useValidacion.test.ts
+💻 Frontend (React)
 
-Tests para hooks de validación
-tests/FormularioVenta.test.tsx
+Se usa Jest con --coverage
 
-Tests para el componente de formulario de ventas
-src/tests/Productos.msw.test.tsx
+Cobertura: ≈ 60–70%
 
-Tests usando MSW (Mock Service Worker) para componente de productos
-src/tests/Productos.test.tsx
+Archivos .spec.tsx en src/__tests__/
 
-Tests unitarios para componente de productos
-tests/FacturaVisual.test.tsx
+Ver captura en evidencia
 
-Tests para componente de factura visual
-📊 Desglose de Cobertura por Archivo:
-Archivo	Statements	Branch	Functions	Lines	Líneas sin cubrir
-Productos.tsx	90%	100%	80%	90%	Línea 10
-server.ts	33.33%	100%	100%	33.33%	Líneas 2-5
-🚨 Observaciones:
-MSW Warning: Hay warnings sobre MSW (Mock Service Worker) que no puede inicializarse correctamente debido a problemas con ES Modules, pero está usando un fallback que permite que los tests funcionen.
+🌐 E2E (Cypress)
 
-Cobertura de server.ts: El archivo de mock server tiene baja cobertura (33.33%) - esto es normal ya que es principalmente configuración.
+Pruebas completas de flujo de ventas: crear, actualizar y validar errores.
 
-Productos.tsx: Excelente cobertura (90%) con solo una línea sin cubrir.
+Script ejecutado en CI con:
 
-🔧 Configuración previa (beforeEach):
-✅ Login automático como vendedor
-✅ Navegación a la página de ventas
-✅ Interceptors para simular respuestas del backend
-✅ Espera de elementos críticos (selects, botones)
-📋 Lista de Tests:
-#	Test	Descripción	Objetivo
-1️⃣	SIMPLE - Crear venta básica	Selecciona un producto, ingresa cantidad y lo agrega al carrito	Verificar funcionalidad básica de agregar productos
-2️⃣	DEBUG - Solo mostrar información	Muestra información técnica de elementos en pantalla	Diagnóstico y debugging (no modifica datos)
-🧪	Test alternativo - Método simplificado	Método alternativo para agregar productos con fallbacks	Verificar robustez con diferentes enfoques
-3️⃣	Valida stock insuficiente	Intenta agregar más cantidad de la disponible	Verificar validaciones de stock
-4️⃣	Elimina productos del carrito	Agrega producto y luego lo elimina del carrito	Verificar funcionalidad de eliminación
-5️⃣	Muestra error si no hay productos seleccionados	Verifica estado inicial sin productos seleccionados	Verificar validaciones de formulario
-6️⃣	Maneja errores del backend correctamente	Simula errores del servidor durante confirmación	Verificar manejo de errores
-7️⃣	Test básico de funcionalidad	Test simple de funcionalidad core	Verificar flujo mínimo viable
-🎯 Aspectos probados:
-🔐 Autenticación:
-Login automático con credenciales válidas
-Mantenimiento de sesión durante navegación
-🛍️ Gestión de productos:
-Selección dinámica de productos disponibles
-Validación de campos obligatorios
-Habilitación/deshabilitación de controles según estado
-📊 Validaciones de negocio:
-Control de stock insuficiente
-Validación de cantidades mínimas
-Estados de botones según datos ingresados
-🛒 Carrito de compras:
-Agregado de productos al carrito
-Eliminación de productos del carrito
-Persistencia de datos en interfaz
-⚠️ Manejo de errores:
-Errores de backend (500, 400)
-Validaciones de frontend
-Estados de error en UI
-🔧 Robustez técnica:
-Espera de elementos dinámicos
-Manejo de estados disabled/enabled
-Timeouts y reintentos automáticos
-Fallbacks con force: true cuando es necesario
-▶️ Ejecución:
+npx cypress run --browser chrome --headless
+
+
+Ver captura en evidencia
+
+☁️ SonarCloud
+
+El análisis verifica:
+
+Duplicaciones
+
+Vulnerabilidades
+
+Smells
+
+Cobertura global combinada Go + React
+
+
+🧩 Pipeline completo
+
+
+📚 Tecnologías clave
+Componente	Tecnología
+Backend	Go 1.24, Gin, GORM
+Frontend	React, Vite, TypeScript
+CI/CD	GitLab CI
+Testing	Go test, Jest, Cypress
+QA	SonarCloud, Cobertura XML/LCOV
