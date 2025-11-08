@@ -1,0 +1,383 @@
+> ventas-frontend@0.0.0 test
+> jest
+
+ PASS  tests/useValidacion.test.ts (24.566 s)                                                                                        
+  ● Console
+
+    console.warn
+      MSW server no pudo inicializarse en setupTests, usando fetch fallback: Jest encountered an unexpected token
+
+      Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+      Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+      By default "node_modules" folder is ignored by transformers.
+
+      Here's what you can do:
+       • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+       • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.   
+       • If you need a custom transformation, specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/configuration
+      For information about custom transformations, see:
+      https://jestjs.io/docs/code-transformation
+
+      Details:
+
+      C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\until-async\lib\index.js:23
+      export { until };
+      ^^^^^^
+
+      SyntaxError: Unexpected token 'export'
+          at internalCompileFunction (node:internal/vm:128:18)
+          at compileFunction (node:vm:365:10)
+          at Runtime.createScriptFromCode (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1318:40)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1244:35)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\core\utils\handleRequest.ts:1:23)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\node\SetupServerCommonApi.ts:15:31)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.require (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\src\mocks\server.ts:1:1)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\setupTests.ts:13:21)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at jestAdapter (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-circus\build\runner.js:84:33)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at runTestInternal (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      21 |      // para mantener los tests funcionales.
+      22 |      // eslint-disable-next-line no-console
+    > 23 |      console.warn('MSW server no pudo inicializarse en setupTests, usando fetch fallback:', e)
+         |              ^
+      24 |
+      25 |      global.fetch = jest.fn(() =>
+      26 |              Promise.resolve({
+
+      at Object.<anonymous> (setupTests.ts:23:10)
+
+ PASS  tests/FacturaVisual.test.tsx (26.738 s)
+  ● Console
+
+    console.warn
+      MSW server no pudo inicializarse en setupTests, usando fetch fallback: Jest encountered an unexpected token
+
+      Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+      Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+      By default "node_modules" folder is ignored by transformers.
+
+      Here's what you can do:
+       • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+       • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.   
+       • If you need a custom transformation, specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/configuration
+      For information about custom transformations, see:
+      https://jestjs.io/docs/code-transformation
+
+      Details:
+
+      C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\until-async\lib\index.js:23
+      export { until };
+      ^^^^^^
+
+      SyntaxError: Unexpected token 'export'
+          at internalCompileFunction (node:internal/vm:128:18)
+          at compileFunction (node:vm:365:10)
+          at Runtime.createScriptFromCode (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1318:40)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1244:35)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\core\utils\handleRequest.ts:1:23)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\node\SetupServerCommonApi.ts:15:31)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.require (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\src\mocks\server.ts:1:1)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\setupTests.ts:13:21)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at jestAdapter (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-circus\build\runner.js:84:33)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at runTestInternal (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      21 |      // para mantener los tests funcionales.
+      22 |      // eslint-disable-next-line no-console
+    > 23 |      console.warn('MSW server no pudo inicializarse en setupTests, usando fetch fallback:', e)
+         |              ^
+      24 |
+      25 |      global.fetch = jest.fn(() =>
+      26 |              Promise.resolve({
+
+      at Object.<anonymous> (setupTests.ts:23:10)
+
+ PASS  tests/FormularioVenta.test.tsx (27.055 s)
+  ● Console
+
+    console.warn
+      MSW server no pudo inicializarse en setupTests, usando fetch fallback: Jest encountered an unexpected token
+
+      Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+      Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+      By default "node_modules" folder is ignored by transformers.
+
+      Here's what you can do:
+       • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+       • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.   
+       • If you need a custom transformation, specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/configuration
+      For information about custom transformations, see:
+      https://jestjs.io/docs/code-transformation
+
+      Details:
+
+      C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\until-async\lib\index.js:23
+      export { until };
+      ^^^^^^
+
+      SyntaxError: Unexpected token 'export'
+          at internalCompileFunction (node:internal/vm:128:18)
+          at compileFunction (node:vm:365:10)
+          at Runtime.createScriptFromCode (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1318:40)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1244:35)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\core\utils\handleRequest.ts:1:23)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\node\SetupServerCommonApi.ts:15:31)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.require (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\src\mocks\server.ts:1:1)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\setupTests.ts:13:21)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at jestAdapter (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-circus\build\runner.js:84:33)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at runTestInternal (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      21 |      // para mantener los tests funcionales.
+      22 |      // eslint-disable-next-line no-console
+    > 23 |      console.warn('MSW server no pudo inicializarse en setupTests, usando fetch fallback:', e)
+         |              ^
+      24 |
+      25 |      global.fetch = jest.fn(() =>
+      26 |              Promise.resolve({
+
+      at Object.<anonymous> (setupTests.ts:23:10)
+
+ PASS  src/tests/Productos.msw.test.tsx (27.672 s)
+  ● Console
+
+    console.warn
+      MSW server no pudo inicializarse en setupTests, usando fetch fallback: Jest encountered an unexpected token
+
+      Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+      Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+      By default "node_modules" folder is ignored by transformers.
+
+      Here's what you can do:
+       • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+       • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.   
+       • If you need a custom transformation, specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/configuration
+      For information about custom transformations, see:
+      https://jestjs.io/docs/code-transformation
+
+      Details:
+
+      C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\until-async\lib\index.js:23
+      export { until };
+      ^^^^^^
+
+      SyntaxError: Unexpected token 'export'
+          at internalCompileFunction (node:internal/vm:128:18)
+          at compileFunction (node:vm:365:10)
+          at Runtime.createScriptFromCode (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1318:40)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1244:35)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\core\utils\handleRequest.ts:1:23)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\node\SetupServerCommonApi.ts:15:31)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.require (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\src\mocks\server.ts:1:1)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\setupTests.ts:13:21)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at jestAdapter (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-circus\build\runner.js:84:33)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at runTestInternal (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      21 |      // para mantener los tests funcionales.
+      22 |      // eslint-disable-next-line no-console
+    > 23 |      console.warn('MSW server no pudo inicializarse en setupTests, usando fetch fallback:', e)
+         |              ^
+      24 |
+      25 |      global.fetch = jest.fn(() =>
+      26 |              Promise.resolve({
+
+      at Object.<anonymous> (setupTests.ts:23:10)
+
+ PASS  src/tests/Productos.test.tsx (27.657 s)
+  ● Console
+
+    console.warn
+      MSW server no pudo inicializarse en setupTests, usando fetch fallback: Jest encountered an unexpected token
+
+      Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+      Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+      By default "node_modules" folder is ignored by transformers.
+
+      Here's what you can do:
+       • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+       • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.   
+       • If you need a custom transformation, specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/configuration
+      For information about custom transformations, see:
+      https://jestjs.io/docs/code-transformation
+
+      Details:
+
+      C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\until-async\lib\index.js:23
+      export { until };
+      ^^^^^^
+
+      SyntaxError: Unexpected token 'export'
+          at internalCompileFunction (node:internal/vm:128:18)
+          at compileFunction (node:vm:365:10)
+          at Runtime.createScriptFromCode (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1318:40)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1244:35)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\core\utils\handleRequest.ts:1:23)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\msw\src\node\SetupServerCommonApi.ts:15:31)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.require (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\src\mocks\server.ts:1:1)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at Runtime.requireModuleOrMock (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:964:21)
+          at Object.<anonymous> (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\setupTests.ts:13:21)
+          at Runtime._execModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:1268:24)
+          at Runtime._loadModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:944:12)
+          at Runtime.requireModule (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runtime\build\index.js:832:12)
+          at jestAdapter (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-circus\build\runner.js:84:33)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at runTestInternal (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\COTYS\Documents\Clases cuarto\Inge soft III\IngeSoftIII-DeMarcos-Strumia\TP6-DeMarcosStrumia\ventas-frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      21 |      // para mantener los tests funcionales.
+      22 |      // eslint-disable-next-line no-console
+    > 23 |      console.warn('MSW server no pudo inicializarse en setupTests, usando fetch fallback:', e)
+         |              ^
+      24 |
+      25 |      global.fetch = jest.fn(() =>
+      26 |              Promise.resolve({
+
+      at Object.<anonymous> (setupTests.ts:23:10)
+
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------|---------|----------|---------|---------|-------------------
+All files       |   76.92 |      100 |      80 |   76.92 |                   
+ mocks          |   33.33 |      100 |     100 |   33.33 |                   
+  server.ts     |   33.33 |      100 |     100 |   33.33 | 2-5               
+ pages          |      90 |      100 |      80 |      90 |                   
+  Productos.tsx |      90 |      100 |      80 |      90 | 10               
+----------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 5 passed, 5 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        35.145 s
+Ran all test suites.
