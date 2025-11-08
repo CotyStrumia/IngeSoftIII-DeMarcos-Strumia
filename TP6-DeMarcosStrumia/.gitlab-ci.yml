@@ -60,8 +60,17 @@ test_backend:
     - cd ${BACKEND_DIR}
     - go version
     - go mod tidy
-    - echo "Running go tests..."
-    - go test ./... -v
+    - echo "Installing gotestsum..."
+    - go install gotest.tools/gotestsum@latest
+    - echo "Running Go tests with JUnit XML report..."
+    - gotestsum --junitfile report.xml --format testname -- -v ./...
+  artifacts:
+    when: always
+    reports:
+      junit: ${BACKEND_DIR}/report.xml
+    paths:
+      - ${BACKEND_DIR}/report.xml
+    expire_in: 1 day
 
 # --------------------------
 # Test frontend (Jest)
@@ -79,6 +88,12 @@ test_frontend:
   script:
     - cd ${FRONTEND_DIR}
     - npm ci
-    - echo "Running frontend tests (Jest)..."
-    - npm test -- --runInBand --silent
-
+    - echo "Running frontend tests (Jest) with JUnit XML report..."
+    - npm run test:ci
+  artifacts:
+    when: always
+    reports:
+      junit: ${FRONTEND_DIR}/coverage/junit.xml
+    paths:
+      - ${FRONTEND_DIR}/coverage/
+    expire_in: 1 day
