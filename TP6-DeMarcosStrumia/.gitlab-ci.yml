@@ -1,0 +1,84 @@
+variables:
+  GO_VERSION: "1.24"
+  FRONTEND_DIR: "ventas-frontend"
+  BACKEND_DIR: "ventas-app"
+
+stages:
+  - build_backend
+  - build_frontend
+  - test_backend
+  - test_frontend
+
+# --------------------------
+# Build backend (Go)
+# --------------------------
+build_backend:
+  stage: build_backend
+  image: golang:1.24
+  script:
+    - cd ${BACKEND_DIR}
+    - go version
+    - go mod tidy
+    - go build -o ../backend-app ./cmd/main.go
+  artifacts:
+    paths:
+      - backend-app
+    expire_in: 1 hour
+
+# --------------------------
+# Build frontend (React - Vite)
+# --------------------------
+build_frontend:
+  stage: build_frontend
+  image: node:20
+  needs:
+    - job: build_backend
+      artifacts: true
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${FRONTEND_DIR}/node_modules/
+  script:
+    - cd ${FRONTEND_DIR}
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - ${FRONTEND_DIR}/dist
+    expire_in: 1 hour
+
+# --------------------------
+# Test backend (Go)
+# --------------------------
+test_backend:
+  stage: test_backend
+  image: golang:1.24
+  needs:
+    - job: build_backend
+      artifacts: true
+  script:
+    - cd ${BACKEND_DIR}
+    - go version
+    - go mod tidy
+    - echo "Running go tests..."
+    - go test ./... -v
+
+# --------------------------
+# Test frontend (Jest)
+# --------------------------
+test_frontend:
+  stage: test_frontend
+  image: node:20
+  needs:
+    - job: build_frontend
+      artifacts: true
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - ${FRONTEND_DIR}/node_modules/
+  script:
+    - cd ${FRONTEND_DIR}
+    - npm ci
+    - echo "Running frontend tests (Jest)..."
+    - npm test -- --runInBand --silent
+
