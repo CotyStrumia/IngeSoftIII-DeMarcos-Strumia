@@ -21,5 +21,3 @@ cd 'c:\Users\COTYS\Documents\Clases cuarto\Inge soft III\TP5-DeMarcosStrumia\ven
 npm ci
 npm test -- --coverage
 ```
-
-Nota: por motivos de velocidad y de entorno, no se ejecutaron tests frontend automáticos desde esta sesión; el archivo README incluye los pasos para reproducirlos localmente.

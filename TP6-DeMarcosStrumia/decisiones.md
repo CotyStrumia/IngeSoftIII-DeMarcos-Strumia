@@ -1,15 +1,12 @@
 # Decisiones de testing
 
-Fecha: 2025-10-28
-
-Resumen
 -------
 Se ha implementado una estrategia de testing para el proyecto `ventas-app` / `ventas-frontend` que cubre:
 
 - Unit y controller tests en backend (Go) usando `go test` y `github.com/stretchr/testify`.
-- Mocks para la capa de persistencia (interfaz `database.DBHandler`) para aislar tests y simular errores y mutaciones.
+- Mocks para la capa de persistencia (interfaz `database.DBHandler`) para aislar tests y simular errores y datos.
 - Tests de frontend con `jest` y `@testing-library/react` (mock de axios en tests de componentes).
-- Integración de ejecución de tests en CI (`azure-pipelines.yml`) para ejecutar `go test` y `npm test`.
+- Integración de ejecución de tests en CI (`.gitlab-ci.yml`) para ejecutar `go test` y `npm test`.
 
 Principios y decisiones clave
 -----------------------------
@@ -33,23 +30,14 @@ Principios y decisiones clave
 
 4) Cobertura y CI
 
-- El pipeline (`azure-pipelines.yml`) ejecuta build y tests backend y frontend.
-- Recomendación: añadir cache y publicación de cobertura en próximas iteraciones.
+- El pipeline (`.gitlab-ci.yml`) ejecuta build y tests backend y frontend.
 
-Futuros pasos (mejoras sugeridas)
---------------------------------
-
-- Añadir tests de integración opcionales que ejecuten la app contra una BD temporal (Docker + MySQL) para validar migrations y flujos completos.
-- Publicar reports de cobertura (Go / Jest) y configurar gates en Azure (porcentaje mínimo).
-- Usar MSW en frontend para pruebas de componentes con respuestas de red realistas.
   
 Nota sobre MSW y Jest
 ---------------------
 
 - Durante la integración se detectó una incompatibilidad puntual entre `msw` y el entorno de Jest usado (error de parseo por ESM en `node_modules/until-async`). Esto hacía que la inicialización del server MSW en `setupTests.ts` fallara en algunos entornos locales/CI.
 - Decisión tomada: para evitar bloquear la entrega, los tests frontend se hicieron resilientes — si MSW puede arrancar, el test lo usa; si no, el test hace un mock de `api/axios` antes de importar el componente. Esto permite verificar el comportamiento del componente de forma determinista en ambos casos.
-- Recomendación: si queremos usar MSW "de verdad" en todos los entornos, es buena idea arreglar la configuración de Jest para transformar los paquetes ESM problemáticos (o usar `babel-jest`) o fijar una versión de `msw` compatible. Esto está marcado como tarea opcional en el checklist.
-- Añadir linters en pipeline (golangci-lint / eslint) para quality gates.
 
 Archivos relevantes
 ------------------
@@ -83,6 +71,3 @@ Evidencias
 - Los resultados de ejecución de tests backend están en `evidence/backend_test_output.txt`.
  - Resultados y notas de los tests frontend están en `evidence/` (incluyen la estrategia MSW/fallback).
 
-Contacto
--------
-Si quieres que prepare los reports de cobertura o que agregue pasos de integración con Docker en el pipeline, lo implemento a continuación.
