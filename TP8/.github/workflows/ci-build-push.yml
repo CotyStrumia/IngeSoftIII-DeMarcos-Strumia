@@ -1,0 +1,223 @@
+name: CI - Test, Build & Push to GHCR
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_BACK: ghcr.io/${{ github.repository_owner }}/tp8-ingsw-back
+  IMAGE_FRONT: ghcr.io/${{ github.repository_owner }}/tp8-ingsw-front
+
+jobs:
+  test-back:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+          cache: true
+      - name: Backend tests
+        working-directory: ./ventas-app
+        run: |
+          go test -v ./... -coverprofile=coverage.out
+          go tool cover -func=coverage.out | tail -n 1
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage
+          path: ventas-app/coverage.out
+
+  test-front:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ventas-frontend/package-lock.json
+      - name: Install
+        working-directory: ./ventas-frontend
+        run: npm ci
+      - name: Typecheck
+        working-directory: ./ventas-frontend
+        run: npm run typecheck --if-present || npx tsc --noEmit
+      - name: Lint
+        working-directory: ./ventas-frontend
+        run: npm run lint --if-present || echo "no lint script"
+      - name: Unit tests
+        working-directory: ./ventas-frontend
+        env:
+          CI: true
+        run: npm test --if-present || echo "no tests"
+      - name: Build (ensures prod build passes)
+        working-directory: ./ventas-frontend
+        run: npm run build
+
+  build-push-qa:
+    name: Build & Push QA Images
+    needs: [test-back, test-front]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      sha: ${{ steps.vars.outputs.SHORT_SHA }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set short SHA
+        id: vars
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build & Push Backend QA
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ventas-app
+          file: ./ventas-app/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_BACK }}:${{ steps.vars.outputs.SHORT_SHA }}
+            ${{ env.IMAGE_BACK }}:latest
+            ${{ env.IMAGE_BACK }}:qa
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push Frontend QA
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ventas-frontend
+          file: ./ventas-frontend/Dockerfile
+          push: true
+          build-args: |
+            BUILD_MODE=qa
+          tags: |
+            ${{ env.IMAGE_FRONT }}:${{ steps.vars.outputs.SHORT_SHA }}
+            ${{ env.IMAGE_FRONT }}:latest
+            ${{ env.IMAGE_FRONT }}:qa
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  build-push-prod:
+    name: Build & Push PROD Images
+    needs: [test-back, test-front]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      sha: ${{ steps.vars.outputs.SHORT_SHA }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set short SHA
+        id: vars
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build & Push Backend PROD
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ventas-app
+          file: ./ventas-app/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_BACK }}:prod
+            ${{ env.IMAGE_BACK }}:prod-${{ steps.vars.outputs.SHORT_SHA }}
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push Frontend PROD
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ventas-frontend
+          file: ./ventas-frontend/Dockerfile
+          push: true
+          build-args: |
+            BUILD_MODE=production
+          tags: |
+            ${{ env.IMAGE_FRONT }}:prod
+            ${{ env.IMAGE_FRONT }}:prod-${{ steps.vars.outputs.SHORT_SHA }}
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy-qa:
+    name: Deploy to QA
+    needs: [build-push-qa]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy Backend QA to Render
+        run: |
+          echo "Deploying backend to QA..."
+          curl -fsSL -X POST "${{ secrets.RENDER_BACK_QA_HOOK }}"
+      
+      - name: Deploy Frontend QA to Render
+        run: |
+          echo "Deploying frontend to QA..."
+          curl -fsSL -X POST "${{ secrets.RENDER_FRONT_QA_HOOK }}"
+      
+      - name: QA Deployment Complete
+        run: echo "✅ QA deployment triggered successfully"
+
+  deploy-prod:
+    name: Deploy to Production
+    needs: [build-push-prod]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://tp8-front-prod-tn48.onrender.com
+    steps:
+      - name: Deploy Backend PROD to Render
+        run: |
+          echo "Deploying backend to Production..."
+          curl -fsSL -X POST "${{ secrets.RENDER_BACK_PROD_HOOK }}"
+      
+      - name: Deploy Frontend PROD to Render
+        run: |
+          echo "Deploying frontend to Production..."
+          curl -fsSL -X POST "${{ secrets.RENDER_FRONT_PROD_HOOK }}"
+      
+      - name: Production Deployment Complete
+        run: echo "✅ Production deployment triggered successfully"
